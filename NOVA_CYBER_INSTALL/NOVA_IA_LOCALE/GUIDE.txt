@@ -1,0 +1,49 @@
+NOVA — IA LOCALE POUR WINDOWS · VERSION 1.1
+===========================================
+
+CE QUE C'EST
+NOVA est une interface de chat en français pour un modèle de texte local (Ollama). Elle dispose aussi d'un studio de création d'images qui utilise ComfyUI en local. Les conversations sont gardées dans le stockage local de ce navigateur ; les images générées sont enregistrées dans le dossier generated_images près de app.py.
+
+INSTALLER NOVA ET LE CHAT (UNE SEULE FOIS)
+1. Décompresse tout le dossier NOVA_IA_LOCALE dans un dossier où tu peux écrire.
+2. Installe Python 3 depuis https://www.python.org/downloads/windows/ si nécessaire.
+3. Installe Ollama depuis https://ollama.com/download/windows et laisse-le démarrer.
+4. Double-clique sur INSTALLER_ET_DEMARRER.bat. Il téléchargera le modèle Qwen3 8B (environ 5 Go).
+5. Pour utiliser NOVA ensuite, double-clique sur LANCER.bat.
+6. Garde la fenêtre noire de NOVA ouverte ; l'interface se trouve à http://127.0.0.1:8765.
+
+ACTIVER LA CREATION D'IMAGES (CONFIGURATION SEPAREE)
+NOVA utilise ComfyUI comme moteur d'images local. Ollama est un moteur de texte : il ne fabrique pas lui-même les images. Les deux peuvent être installés sur le même PC.
+
+1. Télécharge et installe ComfyUI depuis son site officiel : https://www.comfy.org/download
+   Pour les détails et les versions portables Windows, consulte le dépôt officiel :
+   https://github.com/Comfy-Org/ComfyUI
+2. Lance ComfyUI et attends qu'il soit prêt. Avec une installation standard, son adresse locale est http://127.0.0.1:8188.
+3. Télécharge un modèle d'image compatible avec le workflow checkpoint (Stable Diffusion 1.5 ou SDXL) depuis une source de modèles de confiance. Vérifie la licence du modèle avant toute réutilisation.
+4. Place le fichier modèle .safetensors ou .ckpt dans le dossier de ComfyUI :
+   ComfyUI/models/checkpoints/
+   Pour l'édition portable, ce dossier se trouve dans le répertoire extrait :
+   ComfyUI_windows_portable/ComfyUI/models/checkpoints/
+5. Redémarre ComfyUI si nécessaire, puis laisse-le ouvert.
+6. Démarre NOVA avec LANCER.bat et clique sur « Créer une image ». Les modèles détectés apparaîtront dans la liste.
+7. Décris l'image, règle le format et le nombre d'étapes, puis clique sur « Générer l'image ». Les images s'afficheront dans la galerie et seront enregistrées dans generated_images.
+
+IMPORTANT POUR LES IMAGES
+- Le premier téléchargement de ComfyUI et du modèle nécessite Internet et plusieurs Go d'espace disque. Après installation, la génération peut fonctionner hors ligne si le modèle est disponible localement.
+- La vitesse dépend du modèle et du matériel du PC. Une image 512 × 512 avec 8 étapes est une bonne option si la génération est lente ou si la mémoire manque.
+- Tous les modèles ne sont pas interchangeables. Cette version de NOVA utilise un workflow simple pour les modèles checkpoint Stable Diffusion 1.5 et SDXL ; les modèles qui nécessitent des workflows spécifiques (par exemple certains modèles Flux ou modèles à plusieurs fichiers) peuvent ne pas fonctionner.
+- Garde ComfyUI et la fenêtre noire de NOVA ouverts pendant la génération. Si ComfyUI affiche une erreur, regarde sa fenêtre pour obtenir le détail.
+- Les prompts et images sont transmis à des services locaux sur 127.0.0.1, pas à un service cloud dans le code de NOVA.
+
+DEPANNAGE
+- Chat indisponible : vérifie qu'Ollama est démarré et que Qwen3 est installé. Dans un terminal, tu peux lancer : ollama pull qwen3:8b
+- Le studio indique « ComfyUI non démarré » : lance ComfyUI et vérifie http://127.0.0.1:8188.
+- Aucun modèle n'apparaît : vérifie l'emplacement du fichier modèle dans models/checkpoints puis redémarre ComfyUI.
+- Erreur de mémoire ou génération trop lente : choisis 512 × 512 et 8 étapes, puis réessaie.
+- Pour arrêter NOVA, ferme sa fenêtre noire ou appuie sur Ctrl+C. Arrêter ComfyUI séparément arrête la création d'images, mais le chat peut continuer.
+
+LIENS OFFICIELS
+Ollama : https://ollama.com/download/windows
+Python : https://www.python.org/downloads/windows/
+ComfyUI : https://www.comfy.org/download
+Dépôt officiel ComfyUI : https://github.com/Comfy-Org/ComfyUI

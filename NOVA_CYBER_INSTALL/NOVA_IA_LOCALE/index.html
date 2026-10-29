@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090d18">
+<title>NOVA // CYBER AI — IA locale</title>
+<style>
+:root{color-scheme:dark;--bg:#090d18;--panel:#0f1525;--panel2:#131b2e;--line:rgba(162,183,225,.13);--text:#eef3ff;--muted:#91a0bc;--blue:#67a7ff;--violet:#a18aff;--green:#55e0b0;--danger:#ff758a}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 65% -20%,#18284a 0%,transparent 45%),var(--bg);color:var(--text)}button,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.app{display:grid;grid-template-columns:270px minmax(0,1fr);height:100vh;min-height:570px;max-width:1800px;margin:auto}.sidebar{background:rgba(9,13,24,.8);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:18px 14px;min-width:0}.brand{display:flex;align-items:center;gap:11px;padding:7px 7px 22px}.logo{width:41px;height:41px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,#62a5ff,#9c72ff);box-shadow:0 8px 28px #5e84ff35;font-weight:900;font-size:21px;color:white}.brandname{font-weight:800;letter-spacing:.08em;font-size:17px}.brandtag{font-size:11px;color:var(--muted);margin-top:3px;letter-spacing:.09em;text-transform:uppercase}.newchat{border:1px solid #7ca8ff55;border-radius:13px;background:linear-gradient(115deg,#23365c,#1b2443);color:#edf4ff;padding:12px 13px;text-align:left;font-weight:650;display:flex;gap:10px;align-items:center;transition:.2s}.newchat:hover{border-color:#80aaff;transform:translateY(-1px)}.plus{font-size:20px;line-height:14px;color:#9fc7ff}.sect{margin:24px 8px 10px;color:#667795;font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}.history{overflow:auto;display:flex;flex-direction:column;gap:5px}.historyitem{display:flex;align-items:center;gap:7px;border:1px solid transparent;border-radius:10px;padding:9px 10px;color:#bac6df;text-align:left;background:transparent;width:100%;font-size:12px}.historyitem:hover,.historyitem.active{background:#182137;border-color:var(--line);color:#fff}.historyitem .histtitle{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}.historyitem .delete{border:0;color:#7785a1;background:transparent;visibility:hidden;padding:1px 4px}.historyitem:hover .delete{visibility:visible}.historyitem .delete:hover{color:var(--danger)}.sidebarbottom{margin-top:auto;padding-top:12px}.localcard{border:1px solid var(--line);background:linear-gradient(145deg,#111a2c,#0e1422);border-radius:13px;padding:12px}.localcardtop{display:flex;gap:8px;align-items:center;font-size:12px;font-weight:700}.shield{color:var(--green)}.localcard p{font-size:11px;line-height:1.5;color:var(--muted);margin:8px 0 0}.smallfoot{color:#54627c;font-size:10px;padding:14px 8px 0}
+.main{display:flex;flex-direction:column;min-width:0;min-height:0}.topbar{height:70px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid var(--line);background:#0a0f1b80;backdrop-filter:blur(20px)}.top-left{display:flex;flex-direction:column;gap:3px}.top-title{font-size:14px;font-weight:720;letter-spacing:.01em}.top-sub{font-size:11px;color:var(--muted)}.top-actions{display:flex;gap:10px;align-items:center}.status{display:flex;gap:7px;align-items:center;border:1px solid var(--line);background:#111a2b;border-radius:999px;padding:8px 11px;color:#bcc8df;font-size:11px}.dot{width:7px;height:7px;border-radius:50%;background:#f2b45f;box-shadow:0 0 12px #f2b45f55}.dot.ok{background:var(--green);box-shadow:0 0 12px #55e0b066}.modelselect{max-width:185px;background:#10182a;color:#dce7ff;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:11px;outline:none}.chat-scroll{flex:1;overflow:auto;scroll-behavior:smooth}.content{width:min(850px,100%);margin:0 auto;padding:38px 28px 28px}.welcome{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:35px 0}.orb{height:84px;width:84px;border-radius:27px;background:linear-gradient(140deg,#4e9cff,#986fff 68%,#64d9d0);display:grid;place-items:center;box-shadow:0 15px 55px #667aff25;position:relative;margin-bottom:28px}.orb:before{content:"";position:absolute;inset:-7px;border:1px solid #8caeff20;border-radius:32px}.orb svg{width:43px;height:43px}.welcome h1{font-size:clamp(29px,4vw,43px);letter-spacing:-.045em;line-height:1.14;margin:0 0 13px}.welcome h1 span{background:linear-gradient(90deg,#77b5ff,#b49aff);background-clip:text;-webkit-background-clip:text;color:transparent}.welcome p{max-width:490px;color:#9daecc;font-size:14px;line-height:1.75;margin:0 auto}.localpill{display:inline-flex;align-items:center;gap:8px;background:#101b29;border:1px solid #4ce2ae22;border-radius:999px;padding:8px 12px;margin-top:19px;color:#9ecfbe;font-size:11px}.suggestions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:min(600px,100%);margin-top:33px;text-align:left}.suggestion{background:linear-gradient(145deg,#111a2a,#101626);border:1px solid var(--line);border-radius:13px;padding:14px;color:#c8d4eb;transition:.18s;font-size:12px;line-height:1.5}.suggestion:hover{border-color:#719bff70;background:#18233a}.suggestion b{display:block;color:#edf3ff;font-size:12px;margin-bottom:4px}.messages{display:flex;flex-direction:column;gap:24px}.message{display:flex;gap:12px;align-items:flex-start;animation:appear .22s ease-out}.message.user{flex-direction:row-reverse}.avatar{flex:0 0 31px;height:31px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#5ea8ff,#8e77ff);font-size:12px;font-weight:900;color:#fff}.message.user .avatar{background:#263450;color:#dbe8ff}.bubblewrap{max-width:calc(100% - 48px);min-width:0}.msglabel{font-size:10px;color:#8596b4;margin:0 2px 7px}.message.user .msglabel{text-align:right}.bubble{font-size:13px;line-height:1.8;color:#e0e8f8;overflow-wrap:anywhere}.message.user .bubble{background:#18243a;border:1px solid #5c83c82b;border-radius:15px 5px 15px 15px;padding:11px 14px;color:#f1f5ff}.bubble p{margin:0 0 11px}.bubble p:last-child{margin-bottom:0}.bubble strong{color:white}.bubble em{color:#d3c8ff}.bubble code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:#a9d7ff;background:#151f32;border:1px solid #324260;border-radius:5px;padding:1px 5px;font-size:11px}.codewrap{border:1px solid #2d3b56;border-radius:11px;overflow:hidden;margin:12px 0;background:#0b1120}.codehead{display:flex;align-items:center;justify-content:space-between;padding:8px 11px;border-bottom:1px solid #27344c;background:#131c2e;color:#8ea2c5;font-size:10px}.copycode{border:1px solid #334360;color:#b9c9e5;border-radius:6px;background:#1a2940;padding:4px 8px;font-size:10px}.codewrap pre{margin:0;padding:13px;overflow:auto;white-space:pre;color:#d8e7ff;font:12px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}.message-tools{display:flex;gap:7px;margin-top:8px}.toolbtn{border:1px solid transparent;background:transparent;color:#788ba9;border-radius:7px;padding:4px 6px;font-size:10px}.toolbtn:hover{background:#131d30;color:#d2def2;border-color:var(--line)}.typing{display:inline-flex;align-items:center;gap:5px;padding:10px 0}.typing span{width:5px;height:5px;border-radius:50%;background:#8da8d4;animation:blink 1.05s infinite}.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}.composer-area{padding:12px 22px 16px;background:linear-gradient(0deg,var(--bg) 75%,transparent)}.composer{max-width:820px;margin:auto;position:relative;border-radius:17px;border:1px solid #35425b;background:#111827;box-shadow:0 12px 40px #0003;transition:border .2s}.composer:focus-within{border-color:#658bda}.composer textarea{display:block;width:100%;min-height:58px;max-height:190px;resize:none;border:0;outline:0;background:transparent;color:#f0f5ff;padding:17px 54px 7px 17px;font-size:13px;line-height:1.6}.composer textarea::placeholder{color:#687995}.composer-bottom{display:flex;justify-content:space-between;align-items:center;padding:5px 10px 10px 15px}.hint{font-size:10px;color:#687995}.send{display:grid;place-items:center;width:35px;height:35px;border:0;border-radius:11px;color:#fff;background:linear-gradient(135deg,#579dff,#9476ff);box-shadow:0 5px 18px #638eff25;transition:.15s}.send:hover{filter:brightness(1.13);transform:translateY(-1px)}.send:disabled{opacity:.45;cursor:not-allowed;transform:none}.stop{border:1px solid #5b3543;background:#251724;color:#ffc1cd;border-radius:10px;padding:7px 10px;font-size:10px;display:none}.stop.visible{display:inline-flex}.disclaimer{text-align:center;font-size:10px;line-height:1.5;color:#53617a;margin:9px auto 0;max-width:820px}.alert{margin:0 auto 14px;max-width:820px;border:1px solid #8d6b37;background:#241e13;color:#f5d69e;border-radius:11px;padding:12px 14px;font-size:12px;line-height:1.65}.alert a{color:#b8d2ff}.hidden{display:none!important}.mobilemenu{display:none;border:1px solid var(--line);background:#111a2b;color:#dde8ff;border-radius:9px;padding:7px 9px}
+@keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}@keyframes blink{0%,65%,100%{opacity:.3;transform:translateY(0)}35%{opacity:1;transform:translateY(-3px)}}
+@media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{position:fixed;z-index:5;top:0;bottom:0;left:0;width:270px;transform:translateX(-102%);transition:transform .22s;background:#0b1020;box-shadow:15px 0 50px #0005}.sidebar.open{transform:translateX(0)}.topbar{padding:0 14px;height:63px}.mobilemenu{display:block}.top-left{margin-right:auto;margin-left:10px}.top-sub{display:none}.top-actions{gap:6px}.status{padding:7px 8px;font-size:10px}.modelselect{max-width:115px;padding:7px 5px}.content{padding:24px 15px}.welcome{padding:18px 0}.welcome h1{font-size:32px}.welcome p{font-size:13px}.suggestions{grid-template-columns:1fr;margin-top:24px}.composer-area{padding:8px 10px 12px}.hint{font-size:9px}.bubble{font-size:12px}.orb{width:69px;height:69px;border-radius:23px;margin-bottom:22px}.orb svg{width:36px;height:36px}}
+
+/* Studio d'images local */
+.imagejump{margin-top:9px;border:1px solid #6d64b355;border-radius:13px;background:linear-gradient(115deg,#252347,#182440);color:#e8e6ff;padding:11px 13px;text-align:left;font-weight:650;display:flex;gap:10px;align-items:center;width:100%;font-size:13px;transition:.2s}
+.imagejump:hover,.imagejump.active{border-color:#a18aff;background:linear-gradient(115deg,#332b62,#1b2b4b)}
+.image-studio{width:min(1000px,100%);margin:0 auto;padding:28px 28px 38px}
+.image-hero{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px}
+.image-icon{width:54px;height:54px;flex-shrink:0;display:grid;place-items:center;border-radius:17px;background:linear-gradient(145deg,#956bff,#557dff);font-size:25px;box-shadow:0 8px 26px #846eff30}
+.image-hero h2{font-size:26px;letter-spacing:-.035em;margin:0 0 7px}
+.image-hero p{font-size:12px;color:var(--muted);line-height:1.7;margin:0;max-width:680px}
+.image-panel{border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#111a2b,#0c1220);padding:20px;box-shadow:0 18px 45px #0002}
+.img-label{display:block;font-size:12px;font-weight:700;color:#dce7ff;margin:0 0 8px}
+.img-prompt,.img-negative,.img-select{width:100%;border:1px solid #34425d;border-radius:11px;background:#0b1220;color:#edf3ff;padding:12px;font:12px/1.65 inherit;outline:none}
+.img-prompt{min-height:112px;resize:vertical}.img-negative{min-height:62px;resize:vertical}.img-prompt:focus,.img-negative:focus,.img-select:focus{border-color:#7e91eb}
+.img-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px;margin-top:16px}.img-field{min-width:0}.img-help{font-size:10px;color:#7283a2;margin-top:6px;line-height:1.5}
+.img-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:19px}.img-generate{display:flex;align-items:center;gap:9px;border:0;border-radius:11px;background:linear-gradient(110deg,#7566ec,#4f9fff);color:white;padding:12px 17px;font-size:12px;font-weight:750;box-shadow:0 7px 25px #6d83ff25}.img-generate:hover{filter:brightness(1.1)}.img-generate:disabled{opacity:.55;cursor:wait}.img-status{font-size:11px;line-height:1.6;color:#9cacc8}.img-status.error{color:#ffb6c0}.img-status.good{color:#8ce4c3}
+.img-gallery-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:28px 0 14px}.img-gallery-head h3{font-size:15px;margin:0}.img-gallery-head span{font-size:10px;color:#7d8dab}.img-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.img-card{border:1px solid var(--line);border-radius:14px;background:#101728;overflow:hidden;min-width:0}.img-card img{display:block;width:100%;aspect-ratio:1/1;object-fit:contain;background:#080c14}.img-card-foot{padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px}.img-meta{font-size:10px;color:#91a1bd;overflow-wrap:anywhere}.img-download{display:inline-flex;white-space:nowrap;align-items:center;gap:6px;text-decoration:none;border:1px solid #364765;border-radius:8px;background:#18243a;color:#dce8ff;padding:7px 9px;font-size:10px}.img-download:hover{border-color:#7f9dea}.img-empty{grid-column:1/-1;text-align:center;padding:26px 12px;border:1px dashed #36435d;border-radius:13px;color:#7586a5;font-size:12px;line-height:1.7}
+@media(max-width:760px){.image-studio{padding:22px 14px}.image-panel{padding:14px}.image-hero h2{font-size:22px}.img-grid{grid-template-columns:1fr 1fr}.img-field:first-child{grid-column:1/-1}.img-gallery{grid-template-columns:1fr}}
+
+
+/* Thème CYBER : néons cyan / magenta, grille technique et contraste renforcé */
+:root{--bg:#05070d;--panel:#090e1a;--panel2:#0d1526;--line:rgba(0,245,255,.19);--text:#e8fbff;--muted:#87a4b5;--blue:#00f5ff;--violet:#ff35d3;--green:#b5ff3d;--danger:#ff5e83;color-scheme:dark}
+html,body{background-color:#05070d;background-image:radial-gradient(ellipse at 78% -8%,rgba(0,245,255,.12),transparent 37%),radial-gradient(ellipse at 8% 90%,rgba(255,43,211,.09),transparent 34%),linear-gradient(180deg,#05070d,#060915 60%,#05070d)}
+body:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.13;background-image:linear-gradient(rgba(0,245,255,.34) 1px,transparent 1px),linear-gradient(90deg,rgba(0,245,255,.34) 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(to bottom,#000 0%,transparent 90%)}
+.app{position:relative;z-index:1}
+.sidebar{background:rgba(5,8,17,.92);border-right-color:rgba(0,245,255,.23);box-shadow:8px 0 36px rgba(0,245,255,.025)}
+.logo{border-radius:11px;background:linear-gradient(135deg,#00f5ff 0%,#0879ff 48%,#ff35d3 100%);box-shadow:0 0 22px rgba(0,245,255,.24),inset 0 0 0 1px rgba(255,255,255,.22);color:#031018;text-shadow:0 1px rgba(255,255,255,.18)}
+.brandname{letter-spacing:.17em;text-shadow:0 0 15px rgba(0,245,255,.25)}
+.brandtag{color:#5eeeff;letter-spacing:.16em}
+.newchat{border-color:rgba(0,245,255,.38);border-radius:9px;background:linear-gradient(105deg,rgba(0,245,255,.12),rgba(255,43,211,.08));box-shadow:inset 0 0 18px rgba(0,245,255,.025);}
+.newchat:hover{border-color:var(--blue);box-shadow:0 0 19px rgba(0,245,255,.1)}
+.plus,.sect{color:var(--blue)}
+.historyitem{border-radius:7px}
+.historyitem:hover,.historyitem.active{background:rgba(0,245,255,.075);border-color:rgba(0,245,255,.24);box-shadow:inset 2px 0 var(--blue)}
+.localcard{border-color:rgba(181,255,61,.22);background:linear-gradient(145deg,rgba(0,245,255,.06),rgba(255,43,211,.035),#080d18);border-radius:9px}
+.shield{color:var(--green);text-shadow:0 0 10px rgba(181,255,61,.38)}
+.topbar{border-bottom-color:rgba(0,245,255,.2);background:rgba(5,8,17,.82);box-shadow:0 5px 28px rgba(0,0,0,.14)}
+.top-title{letter-spacing:.08em;text-transform:uppercase}
+.status{border-color:rgba(0,245,255,.18);background:#091321}
+.dot.ok{background:var(--green);box-shadow:0 0 12px rgba(181,255,61,.68)}
+.modelselect{border-color:rgba(0,245,255,.25);background:#080f1c}
+.orb{border-radius:22px;background:linear-gradient(135deg,#00f5ff 0%,#1478ff 43%,#ff35d3 100%);box-shadow:0 0 24px rgba(0,245,255,.24),0 0 60px rgba(255,43,211,.1);animation:cyberPulse 4s ease-in-out infinite}
+.orb:before{border-color:rgba(0,245,255,.32);border-radius:27px;box-shadow:0 0 22px rgba(0,245,255,.07)}
+.welcome h1 span{background:linear-gradient(90deg,#00f5ff 0%,#71faff 42%,#ff5fe0 100%);background-clip:text;-webkit-background-clip:text;color:transparent;filter:drop-shadow(0 0 15px rgba(0,245,255,.12))}
+.localpill{background:rgba(181,255,61,.04);border-color:rgba(181,255,61,.22);color:#ceff87}
+.suggestion{border-radius:9px;background:linear-gradient(140deg,rgba(0,245,255,.055),rgba(255,43,211,.025),rgba(7,12,23,.92));border-color:rgba(0,245,255,.14)}
+.suggestion:hover{border-color:rgba(0,245,255,.52);background:rgba(0,245,255,.07);box-shadow:0 0 20px rgba(0,245,255,.055)}
+.suggestion b{color:#9cfaff}
+.avatar{border-radius:8px;background:linear-gradient(135deg,#00dfff,#2458ff 55%,#ff35d3);color:#041018;box-shadow:0 0 13px rgba(0,245,255,.14)}
+.message.user .avatar{background:#101d2d;color:#a6fbff;border:1px solid rgba(0,245,255,.32)}
+.message.user .bubble{background:rgba(0,245,255,.055);border-color:rgba(0,245,255,.23)}
+.bubble code{color:#8afaff;background:#07131f;border-color:#15505b}
+.codewrap{border-color:rgba(0,245,255,.2);background:#040912}
+.codehead{border-bottom-color:rgba(0,245,255,.16);background:#091321;color:#5eeeff}
+.composer{border-color:rgba(0,245,255,.25);background:rgba(7,13,24,.97);box-shadow:0 0 25px rgba(0,245,255,.045),0 12px 40px #0005}
+.composer:focus-within{border-color:#00f5ff;box-shadow:0 0 0 1px rgba(0,245,255,.13),0 0 28px rgba(0,245,255,.08)}
+.send{background:linear-gradient(120deg,#00dfff,#126aff 52%,#ff35d3);color:#021016;box-shadow:0 0 18px rgba(0,245,255,.16)}
+.send:hover{filter:brightness(1.17);box-shadow:0 0 22px rgba(0,245,255,.25)}
+.imagejump{border-color:rgba(255,53,211,.34);border-radius:9px;background:linear-gradient(105deg,rgba(255,53,211,.12),rgba(0,245,255,.07));color:#f4eaff}
+.imagejump:hover,.imagejump.active{border-color:#ff35d3;background:linear-gradient(105deg,rgba(255,53,211,.18),rgba(0,245,255,.1));box-shadow:0 0 20px rgba(255,53,211,.08)}
+.image-icon{border-radius:13px;background:linear-gradient(135deg,#00f5ff,#246aff 50%,#ff35d3);color:#031018;box-shadow:0 0 24px rgba(0,245,255,.17)}
+.image-panel{border-color:rgba(0,245,255,.2);border-radius:12px;background:linear-gradient(145deg,rgba(0,245,255,.045),rgba(255,43,211,.025),#080d18);box-shadow:0 18px 45px #0004}
+.img-label{color:#bafaff}
+.img-prompt,.img-negative,.img-select{border-color:rgba(0,245,255,.22);border-radius:8px;background:#050b15}
+.img-prompt:focus,.img-negative:focus,.img-select:focus{border-color:#00f5ff;box-shadow:0 0 0 1px rgba(0,245,255,.1)}
+.img-generate{border-radius:8px;background:linear-gradient(110deg,#00dfff,#126aff 55%,#ff35d3);color:#041016;box-shadow:0 0 20px rgba(0,245,255,.13)}
+.img-card{border-color:rgba(0,245,255,.19);border-radius:10px;background:#080f1b}
+.img-download{border-color:rgba(0,245,255,.22);background:#0a1724;color:#a7faff;border-radius:7px}
+.img-download:hover{border-color:#00f5ff;box-shadow:0 0 12px rgba(0,245,255,.08)}
+.img-empty{border-color:rgba(0,245,255,.22);color:#83a4b8}
+.alert{border-color:#b88430;background:#211a0e;color:#ffe0a3}
+.alert a{color:#71faff}
+@keyframes cyberPulse{0%,100%{filter:saturate(1);box-shadow:0 0 24px rgba(0,245,255,.2),0 0 55px rgba(255,43,211,.08)}50%{filter:saturate(1.3);box-shadow:0 0 32px rgba(0,245,255,.29),0 0 70px rgba(255,43,211,.13)}}
+@media(prefers-reduced-motion:reduce){.orb{animation:none}*{scroll-behavior:auto!important;transition:none!important}}
+@media(max-width:760px){.sidebar{background:rgba(5,8,17,.98)}}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="logo">N</div><div><div class="brandname">NOVA</div><div class="brandtag">Cyber intelligence</div></div></div>
+    <button class="newchat" id="newChat"><span class="plus">＋</span> Nouvelle conversation</button>
+    <button class="imagejump" id="imageMode"><span style="font-size:18px">✧</span> Créer une image</button>
+    <div class="sect">Récents</div>
+    <div class="history" id="history"></div>
+    <div class="sidebarbottom">
+      <div class="localcard"><div class="localcardtop"><span class="shield">◆</span> Tes données restent ici</div><p>Les messages sont traités par le modèle local sur ton PC. L'historique est sauvegardé dans ce navigateur.</p></div>
+      <div class="smallfoot">NOVA LOCAL · VERSION 1.1</div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <button class="mobilemenu" id="mobileMenu" aria-label="Ouvrir le menu">☰</button>
+      <div class="top-left"><div class="top-title">Assistant personnel</div><div class="top-sub">Une IA qui fonctionne sur ton ordinateur</div></div>
+      <div class="top-actions">
+        <div class="status"><span class="dot" id="statusDot"></span><span id="statusText">Vérification…</span></div>
+        <select class="modelselect" id="modelSelect" aria-label="Choisir le modèle"><option>Recherche des modèles…</option></select>
+      </div>
+    </header>
+    <div class="chat-scroll" id="chatScroll">
+      <div class="content">
+        <div id="setupAlert" class="alert hidden"></div>
+        <section id="imageStudio" class="image-studio hidden">
+          <div class="image-hero"><div class="image-icon">✧</div><div><h2>Studio d’images</h2><p>Décris ce que tu veux voir : ComfyUI fabriquera l’image sur ton ordinateur. Il faut que ComfyUI soit démarré et qu’un modèle checkpoint compatible SD 1.5 ou SDXL soit installé.</p></div></div>
+          <div id="imageSetupAlert" class="alert hidden"></div>
+          <div class="image-panel">
+            <label class="img-label" for="imagePrompt">Quelle image veux-tu créer ?</label>
+            <textarea id="imagePrompt" class="img-prompt" maxlength="5000" placeholder="Ex. : un village fantastique au bord d’un lac, au coucher du soleil, illustration détaillée, lumière cinématographique…"></textarea>
+            <div style="margin-top:15px"><label class="img-label" for="negativePrompt">À éviter (facultatif)</label><textarea id="negativePrompt" class="img-negative" maxlength="2000" placeholder="Ex. : flou, basse qualité, texte, filigrane"></textarea></div>
+            <div class="img-grid">
+              <div class="img-field"><label class="img-label" for="imageModelSelect">Modèle d’image local</label><select class="img-select" id="imageModelSelect"><option>Recherche des modèles…</option></select><div class="img-help">Utilise un checkpoint compatible SD 1.5 ou SDXL.</div></div>
+              <div class="img-field"><label class="img-label" for="imageSize">Format</label><select class="img-select" id="imageSize"><option value="768x768">Carré · 768 × 768</option><option value="640x896">Portrait · 640 × 896</option><option value="896x640">Paysage · 896 × 640</option><option value="512x512">Petit · 512 × 512</option></select></div>
+              <div class="img-field"><label class="img-label" for="imageSteps">Détail / durée</label><select class="img-select" id="imageSteps"><option value="8">Rapide · 8 étapes</option><option value="12" selected>Équilibré · 12 étapes</option><option value="20">Plus détaillé · 20 étapes</option><option value="28">Très détaillé · 28 étapes</option></select></div>
+            </div>
+            <div class="img-actions"><button id="generateImageBtn" class="img-generate">✧ Générer l’image</button><div id="imageStatus" class="img-status">Vérification du moteur d’images local…</div></div>
+          </div>
+          <div class="img-gallery-head"><h3>Mes images</h3><span id="galleryCount">Images enregistrées sur ce PC</span></div>
+          <div id="imageGallery" class="img-gallery"><div class="img-empty">Les images que tu crées apparaîtront ici.</div></div>
+        </section>
+        <section class="welcome" id="welcome">
+          <div class="orb"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 5.5 28.7 18l13.1 6-13.1 5.3L24 43l-5.5-13.7L5 24l13.5-6L24 5.5Z" stroke="white" stroke-width="2.5" stroke-linejoin="round"/><circle cx="24" cy="24" r="4" fill="white"/></svg></div>
+          <h1>Salut, moi c'est <span>NOVA.</span></h1>
+          <p>Ton assistant IA personnel, directement sur ton PC. Pose tes questions, écris du code, prépare un projet ou apprends quelque chose de nouveau.</p>
+          <div class="localpill"><span class="dot ok"></span> Local · Privé · Sans abonnement</div>
+          <div class="suggestions">
+            <button class="suggestion" data-prompt="Apprends-moi quelque chose de surprenant sur l'espace."><b>✦ Découvrir</b>Apprends-moi quelque chose de surprenant</button>
+            <button class="suggestion" data-prompt="Aide-moi à créer un petit jeu en HTML, CSS et JavaScript, étape par étape."><b>⌘ Programmer</b>Construire un projet en code</button>
+            <button class="suggestion" data-prompt="Aide-moi à organiser mes idées et à faire un plan simple pour un projet."><b>◈ Organiser</b>Transformer une idée en plan</button>
+            <button class="suggestion" data-prompt="Explique-moi un sujet compliqué avec des mots simples et un exemple concret."><b>◎ Comprendre</b>Expliquer un sujet simplement</button>
+          </div>
+        </section>
+        <section class="messages hidden" id="messages"></section>
+      </div>
+    </div>
+    <div class="composer-area">
+      <div class="composer">
+        <textarea id="prompt" rows="1" placeholder="Écris ton message à NOVA…" aria-label="Ton message"></textarea>
+        <div class="composer-bottom"><div class="hint">Entrée pour envoyer · Maj + Entrée pour une nouvelle ligne</div><div style="display:flex;gap:8px;align-items:center"><button id="stopBtn" class="stop">Arrêter</button><button id="sendBtn" class="send" aria-label="Envoyer" title="Envoyer"><svg viewBox="0 0 24 24" width="17" height="17" fill="none"><path d="M4 12 20 4l-5 16-3-7-8-1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m12 13 8-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div></div>
+      </div>
+      <div class="disclaimer">NOVA peut se tromper : vérifie les informations importantes. L'IA et le modèle tournent localement après leur installation.</div>
+    </div>
+  </main>
+</div>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const HIST_KEY = 'nova.local.conversations.v1';
+  let conversations = loadHistory();
+  let activeId = null;
+  let controller = null;
+  let generating = false;
+  let localModels = [];
+  let currentView = 'chat';
+  let imageGenerating = false;
+
+  function switchView(view){
+    currentView = view;
+    const images = view === 'images';
+    $('welcome').classList.toggle('hidden', images || (!!activeConversation() && activeConversation().messages.length > 0));
+    $('messages').classList.toggle('hidden', images || !activeConversation() || activeConversation().messages.length === 0);
+    $('imageStudio').classList.toggle('hidden', !images);
+    document.querySelector('.composer-area').classList.toggle('hidden', images);
+    $('imageMode').classList.toggle('active', images);
+    $('modelSelect').classList.toggle('hidden', images);
+    $('statusText').textContent = images ? 'Moteur d’images local' : (localModels.length ? 'IA locale prête' : 'Moteur non détecté');
+    document.querySelector('.top-title').textContent = images ? 'Studio de création' : 'Assistant personnel';
+    document.querySelector('.top-sub').textContent = images ? 'Création d’images sur ton ordinateur' : 'Une IA qui fonctionne sur ton ordinateur';
+    $('sidebar').classList.remove('open');
+    if(images){ checkImageStatus(); loadGallery(); $('imagePrompt').focus(); }
+    else { checkStatus(); renderChat(); $('prompt').focus(); }
+  }
+
+  async function checkImageStatus(){
+    const select=$('imageModelSelect'), alert=$('imageSetupAlert'), status=$('imageStatus');
+    try{
+      const res=await fetch('/api/image-status',{cache:'no-store'}); const data=await res.json();
+      select.replaceChildren();
+      if(data.ok && data.models?.length){
+        data.models.forEach(m=>select.add(new Option(m,m)));
+        $('statusDot').classList.add('ok');
+        status.textContent='ComfyUI est prêt · '+data.models.length+' modèle(s) trouvé(s).'; status.className='img-status good';
+        alert.classList.add('hidden'); $('statusDot').classList.add('ok');
+        return;
+      }
+      select.add(new Option(data.ok?'Aucun modèle installé':'ComfyUI non démarré',''));
+      $('statusDot').classList.remove('ok');
+      status.textContent=data.ok?'Aucun modèle d’image trouvé.':'Moteur d’images non démarré.'; status.className='img-status error';
+      alert.innerHTML=data.ok
+        ? 'ComfyUI répond, mais il lui manque un modèle. Ajoute un fichier <b>.safetensors</b> ou <b>.ckpt</b> compatible dans <b>ComfyUI/models/checkpoints</b>, puis redémarre ComfyUI.'
+        : 'Démarre d’abord <b>ComfyUI</b> et attends son ouverture à <a href="http://127.0.0.1:8188" target="_blank" rel="noreferrer">http://127.0.0.1:8188</a>. Consulte le fichier GUIDE.txt pour l’installation.';
+      alert.classList.remove('hidden');
+    }catch{
+      select.replaceChildren(new Option('ComfyUI non détecté',''));
+      $('statusDot').classList.remove('ok');
+      status.textContent='Connexion impossible au moteur d’images.'; status.className='img-status error';
+      alert.textContent='Démarre ComfyUI, puis clique à nouveau sur « Créer une image » pour vérifier le moteur.'; alert.classList.remove('hidden');
+    }
+  }
+
+  function renderGallery(images){
+    const root=$('imageGallery'); root.replaceChildren();
+    $('galleryCount').textContent = images.length ? `${images.length} image(s) enregistrée(s) sur ce PC` : 'Aucune image pour le moment';
+    if(!images.length){const empty=document.createElement('div');empty.className='img-empty';empty.textContent='Tes créations apparaîtront ici, et resteront enregistrées sur ce PC.';root.append(empty);return;}
+    images.forEach(item=>{
+      const card=document.createElement('article');card.className='img-card';
+      const img=document.createElement('img');img.src=item.url;img.alt='Image créée avec NOVA';img.loading='lazy';
+      const foot=document.createElement('div');foot.className='img-card-foot';
+      const meta=document.createElement('div');meta.className='img-meta';meta.textContent=new Date((item.created||Date.now()/1000)*1000).toLocaleString('fr-FR');
+      const link=document.createElement('a');link.className='img-download';link.href=item.url;link.download=item.filename||'nova-image.png';link.textContent='↓ Télécharger';
+      foot.append(meta,link);card.append(img,foot);root.append(card);
+    });
+  }
+  async function loadGallery(){
+    try{const res=await fetch('/api/images',{cache:'no-store'});const data=await res.json();renderGallery(data.images||[]);}catch{}
+  }
+  async function generateImage(){
+    if(imageGenerating) return;
+    const prompt=$('imagePrompt').value.trim();
+    if(!prompt){$('imageStatus').textContent='Écris une description avant de générer.';$('imageStatus').className='img-status error';$('imagePrompt').focus();return;}
+    const selectedSize=$('imageSize').value.split('x').map(Number);
+    const payload={prompt,negative_prompt:$('negativePrompt').value.trim(),model:$('imageModelSelect').value,width:selectedSize[0],height:selectedSize[1],steps:Number($('imageSteps').value)};
+    imageGenerating=true;const button=$('generateImageBtn');button.disabled=true;button.textContent='⏳ Création en cours…';
+    $('imageStatus').textContent='ComfyUI travaille sur ton image. La première génération peut prendre plusieurs minutes.';$('imageStatus').className='img-status';
+    try{
+      const response=await fetch('/api/image',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      const data=await response.json();
+      if(!response.ok || !data.ok) throw new Error((data.error||'La création a échoué.')+(data.detail?'\n'+data.detail:''));
+      $('imageStatus').textContent=`Image créée · ${data.width} × ${data.height} · graine ${data.seed}`;$('imageStatus').className='img-status good';
+      await loadGallery();
+    }catch(err){$('imageStatus').textContent='Erreur : '+(err.message||'Création impossible');$('imageStatus').className='img-status error';}
+    finally{imageGenerating=false;button.disabled=false;button.textContent='✧ Générer l’image';}
+  }
+
+  function loadHistory(){ try { const v=JSON.parse(localStorage.getItem(HIST_KEY)||'[]'); return Array.isArray(v)?v:[]; } catch { return []; } }
+  function saveHistory(){ try { localStorage.setItem(HIST_KEY, JSON.stringify(conversations.slice(0,60))); } catch {} }
+  function activeConversation(){ return conversations.find(c=>c.id===activeId)||null; }
+  function newConversation(){
+    if(currentView==='images') switchView('chat');
+    const c={id:(Date.now().toString(36)+Math.random().toString(36).slice(2,7)),title:'Nouvelle conversation',updated:Date.now(),messages:[]};
+    conversations.unshift(c); activeId=c.id; saveHistory(); renderHistory(); renderChat(); $('prompt').focus(); $('sidebar').classList.remove('open');
+  }
+  function chooseConversation(id){ activeId=id; if(currentView==='images') switchView('chat'); else {renderHistory(); renderChat();} $('sidebar').classList.remove('open'); }
+  function deleteConversation(id){
+    conversations=conversations.filter(c=>c.id!==id);
+    if(activeId===id) activeId=conversations[0]?.id||null;
+    saveHistory(); renderHistory(); renderChat();
+  }
+  function renderHistory(){
+    const root=$('history'); root.replaceChildren();
+    conversations.sort((a,b)=>b.updated-a.updated).slice(0,40).forEach(c=>{
+      const btn=document.createElement('button'); btn.className='historyitem'+(c.id===activeId?' active':'');
+      const ico=document.createElement('span'); ico.textContent='◌';
+      const title=document.createElement('span'); title.className='histtitle'; title.textContent=c.title||'Conversation';
+      const del=document.createElement('span'); del.className='delete'; del.textContent='×'; del.title='Supprimer'; del.setAttribute('role','button'); del.tabIndex=0;
+      del.addEventListener('click',e=>{e.stopPropagation();deleteConversation(c.id)});
+      del.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();deleteConversation(c.id)}});
+      btn.append(ico,title,del); btn.addEventListener('click',()=>chooseConversation(c.id)); root.append(btn);
+    });
+  }
+  function escapeHtml(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function renderMarkdown(text){
+    let s=escapeHtml(text); const blocks=[];
+    s=s.replace(/```([\w+-]*)\n?([\s\S]*?)```/g,(_,lang,code)=>{
+      const token='@@NOVACODE'+blocks.length+'@@';
+      blocks.push(`<div class="codewrap"><div class="codehead"><span>${escapeHtml(lang||'code')}</span><button class="copycode" type="button">Copier le code</button></div><pre><code>${code.replace(/\n$/,'')}</code></pre></div>`);
+      return token;
+    });
+    s=s.replace(/`([^`]+)`/g,'<code>$1</code>');
+    s=s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>');
+    s=s.replace(/^### (.+)$/gm,'<strong>$1</strong>').replace(/^## (.+)$/gm,'<strong>$1</strong>').replace(/^# (.+)$/gm,'<strong>$1</strong>');
+    s=s.replace(/\n/g,'<br>');
+    blocks.forEach((html,i)=>{s=s.replace('@@NOVACODE'+i+'@@',html)});
+    return s;
+  }
+  function messageNode(m,index){
+    const row=document.createElement('article'); row.className='message '+(m.role==='user'?'user':'assistant');
+    const avatar=document.createElement('div'); avatar.className='avatar'; avatar.textContent=m.role==='user'?'S':'N';
+    const wrap=document.createElement('div'); wrap.className='bubblewrap';
+    const label=document.createElement('div'); label.className='msglabel'; label.textContent=m.role==='user'?'Toi':'NOVA';
+    const bubble=document.createElement('div'); bubble.className='bubble';
+    if(m.content) bubble.innerHTML=renderMarkdown(m.content);
+    else bubble.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';
+    wrap.append(label,bubble);
+    if(m.role==='assistant' && m.content){
+      const tools=document.createElement('div'); tools.className='message-tools';
+      const copy=document.createElement('button'); copy.className='toolbtn'; copy.textContent='Copier la réponse'; copy.addEventListener('click',()=>copyText(m.content,copy)); tools.append(copy); wrap.append(tools);
+    }
+    row.append(avatar,wrap); return row;
+  }
+  function renderChat(){
+    const c=activeConversation(); const welcome=$('welcome'); const messages=$('messages');
+    if(!c || !c.messages.length){ welcome.classList.remove('hidden'); messages.classList.add('hidden'); messages.replaceChildren(); }
+    else { welcome.classList.add('hidden'); messages.classList.remove('hidden'); messages.replaceChildren(...c.messages.map(messageNode)); }
+    scrollBottom();
+  }
+  function scrollBottom(){ requestAnimationFrame(()=>{$('chatScroll').scrollTop=$('chatScroll').scrollHeight;}); }
+  function setGenerating(value){ generating=value; $('sendBtn').disabled=value; $('stopBtn').classList.toggle('visible',value); $('prompt').disabled=value; }
+  async function copyText(text,button){ try{await navigator.clipboard.writeText(text); const old=button.textContent; button.textContent='Copié !'; setTimeout(()=>button.textContent=old,1100);}catch{button.textContent='Copie impossible';} }
+  async function sendMessage(prefill){
+    if(generating) return;
+    const text=(typeof prefill==='string'?prefill:$('prompt').value).trim(); if(!text) return;
+    let c=activeConversation(); if(!c){newConversation();c=activeConversation();}
+    c.messages.push({role:'user',content:text}); c.updated=Date.now();
+    if(c.title==='Nouvelle conversation') c.title=text.replace(/\s+/g,' ').slice(0,34)+(text.length>34?'…':'');
+    $('prompt').value=''; resizeTextarea(); saveHistory(); renderHistory(); renderChat();
+    const assistant={role:'assistant',content:''}; c.messages.push(assistant); saveHistory(); renderChat();
+    setGenerating(true); controller=new AbortController();
+    try{
+      const model=$('modelSelect').value||'qwen3:8b';
+      const messages=c.messages.filter(m=>m.content).map(m=>({role:m.role,content:m.content}));
+      const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model,messages}),signal:controller.signal});
+      if(!response.ok){let detail='';try{const err=await response.json();detail=err.error+(err.detail?'\n'+err.detail:'');}catch{detail=await response.text();}throw new Error(detail||'Erreur de communication avec le modèle.');}
+      if(!response.body) throw new Error('Ce navigateur ne prend pas en charge la réponse en continu.');
+      const reader=response.body.getReader(); const decoder=new TextDecoder(); let buffer='';
+      while(true){
+        const {value,done}=await reader.read(); if(done) break;
+        buffer+=decoder.decode(value,{stream:true}); const lines=buffer.split('\n'); buffer=lines.pop()||'';
+        for(const line of lines){ if(!line.trim()) continue; const data=JSON.parse(line); if(data.error) throw new Error(data.error); if(data.message?.content){assistant.content+=data.message.content; updateLastAssistant(c,assistant);} if(data.done){} }
+      }
+      if(buffer.trim()){const data=JSON.parse(buffer);if(data.error)throw new Error(data.error);if(data.message?.content){assistant.content+=data.message.content;updateLastAssistant(c,assistant);}}
+      if(!assistant.content.trim()) assistant.content='Je n’ai pas reçu de réponse. Réessaie avec une autre formulation.';
+    }catch(err){
+      if(err.name==='AbortError'){if(!assistant.content) assistant.content='*Génération arrêtée.*';}
+      else {assistant.content=(assistant.content?assistant.content+'\n\n':'')+'⚠️ **Problème :** '+(err.message||'Erreur inconnue')+'\n\nVérifie qu’Ollama est ouvert et que le modèle choisi est installé.';}
+    }finally{
+      controller=null; setGenerating(false); c.updated=Date.now(); saveHistory(); renderHistory(); renderChat(); $('prompt').focus();
+    }
+  }
+  function updateLastAssistant(c,assistant){
+    saveHistory();
+    const current=activeConversation();
+    if(current && current.id===c.id){
+      const rows=$('messages'); const row=rows.lastElementChild;
+      if(row){const bubble=row.querySelector('.bubble'); if(bubble) bubble.innerHTML=renderMarkdown(assistant.content); scrollBottom();}
+    }
+  }
+  function resizeTextarea(){const t=$('prompt');t.style.height='auto';t.style.height=Math.min(t.scrollHeight,190)+'px';}
+  async function checkStatus(){
+    const dot=$('statusDot'),status=$('statusText'),select=$('modelSelect'),alert=$('setupAlert');
+    try{
+      const res=await fetch('/api/status',{cache:'no-store'}); const data=await res.json();
+      if(data.ok){
+        localModels=data.models||[]; dot.classList.add('ok'); status.textContent='IA locale prête';
+        select.replaceChildren();
+        if(!localModels.length){const o=document.createElement('option');o.value='qwen3:8b';o.textContent='Aucun modèle';select.append(o);}
+        else { localModels.forEach(model=>{const o=document.createElement('option');o.value=model;o.textContent=model;select.append(o);});
+          const preferred=localModels.find(m=>m.startsWith('qwen3:8b'))||localModels.find(m=>m.startsWith('qwen3:4b'))||localModels[0];select.value=preferred;
+        }
+        alert.classList.add('hidden');
+      }else{
+        dot.classList.remove('ok'); status.textContent='Moteur non détecté';
+        select.replaceChildren(new Option('Installe NOVA d’abord','qwen3:8b'));
+        alert.innerHTML='Pour démarrer NOVA, installe d’abord <b>Ollama</b> depuis <a href="https://ollama.com/download/windows" target="_blank" rel="noreferrer">le site officiel</a>, puis lance le fichier <b>INSTALLER ET DÉMARRER.bat</b> fourni avec l’application. Le premier téléchargement du modèle nécessite Internet.';
+        alert.classList.remove('hidden');
+      }
+    }catch{
+      dot.classList.remove('ok'); status.textContent='Connexion locale impossible';
+      alert.textContent='La page ne trouve pas le serveur local. Ferme cette page et démarre NOVA avec LANCER.bat.'; alert.classList.remove('hidden');
+    }
+  }
+  $('newChat').addEventListener('click',newConversation);
+  $('imageMode').addEventListener('click',()=>switchView(currentView==='images'?'chat':'images'));
+  $('generateImageBtn').addEventListener('click',generateImage);
+  $('imagePrompt').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();generateImage();}});
+  $('mobileMenu').addEventListener('click',()=>$('sidebar').classList.toggle('open'));
+  $('sendBtn').addEventListener('click',()=>sendMessage());
+  $('stopBtn').addEventListener('click',()=>{if(controller)controller.abort();});
+  $('prompt').addEventListener('input',resizeTextarea);
+  $('prompt').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}});
+  $('welcome').querySelectorAll('[data-prompt]').forEach(btn=>btn.addEventListener('click',()=>sendMessage(btn.dataset.prompt)));
+  $('messages').addEventListener('click',e=>{const btn=e.target.closest('.copycode');if(btn){const code=btn.closest('.codewrap')?.querySelector('pre code');if(code)copyText(code.textContent,btn);}});
+  if(conversations.length){conversations.sort((a,b)=>b.updated-a.updated);activeId=conversations[0].id;}
+  renderHistory();renderChat();checkStatus();checkImageStatus();loadGallery();
+})();
+</script>
+</body>
+</html>
